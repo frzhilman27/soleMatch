@@ -5,8 +5,10 @@
 
 export const mockAnalyzeFootMeasurement = async (imageBase64) => {
     try {
-        // VITE_API_URL can be set in Vercel. Defaults to localhost for local dev.
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/measure';
+        // Vercel routes `/api/*` defined in vercel.json will handle this natively.
+        // During local dev (npm run dev), you still need to run the Python server
+        // or configure Vite proxy. But on Vercel, this works automatically.
+        const apiUrl = import.meta.env.VITE_API_URL || '/api/measure';
 
         const response = await fetch(apiUrl, {
             method: 'POST',
