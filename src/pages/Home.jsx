@@ -24,7 +24,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4"
+                    className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4 max-w-full px-2"
                 >
                     Find Your Perfect <br className="sm:hidden" />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-blue-700">Shoe Size</span>
@@ -44,7 +44,7 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                     onClick={() => navigate('/measure')}
-                    className="w-full max-w-sm flex items-center justify-center gap-2 bg-brand-600 text-white font-semibold text-lg py-4 px-8 rounded-2xl shadow-lg shadow-brand-500/30 hover:bg-brand-700 active:scale-95 transition-all"
+                    className="w-full max-w-[320px] flex items-center justify-center gap-2 bg-brand-600 text-white font-semibold text-lg py-4 px-6 rounded-2xl shadow-lg shadow-brand-500/30 hover:bg-brand-700 active:scale-95 transition-all mx-auto"
                 >
                     <Camera className="w-6 h-6" />
                     Start Measurement

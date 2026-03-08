@@ -6,10 +6,10 @@ import Result from './pages/Result';
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-      <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 px-4 py-3 flex items-center justify-between">
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans w-full max-w-full overflow-x-hidden">
+      <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 px-4 py-3 flex items-center justify-between w-full">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-brand-500 text-white flex items-center justify-center font-bold text-lg">
+          <div className="w-8 h-8 rounded-lg bg-brand-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
             S
           </div>
           <span className="font-bold text-xl tracking-tight text-slate-900">SoleMatch</span>
