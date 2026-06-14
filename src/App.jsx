@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Measure from './pages/Measure';
 import Result from './pages/Result';
+import History from './pages/History';
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
           <span className="font-bold text-xl tracking-tight text-slate-900">SoleMatch</span>
         </div>
         <nav className="hidden sm:flex items-center gap-6 text-sm font-medium text-slate-600">
-          <a href="#" className="hover:text-brand-500 transition-colors">How it Works</a>
-          <a href="#" className="hover:text-brand-500 transition-colors">Partner with Us</a>
+          <Link to="/" className="hover:text-brand-600 transition-colors">How it works</Link>
+          <Link to="/history" className="hover:text-brand-600 transition-colors">My Size</Link>
         </nav>
+        <Link to="/measure" className="bg-slate-900 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-800 transition-colors shadow-sm">Measure</Link>
       </header>
 
       <main className="flex-1 flex flex-col">
@@ -23,6 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/measure" element={<Measure />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/history" element={<History />} />
         </Routes>
       </main>
     </div>

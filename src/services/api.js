@@ -3,12 +3,10 @@
  * Connects the React MVP to the Python FastAPI Computer Vision Backend
  */
 
-export const mockAnalyzeFootMeasurement = async (imageBase64) => {
+export const analyzeFootMeasurement = async (imageBase64) => {
     try {
-        // Vercel routes `/api/*` defined in vercel.json will handle this natively.
-        // During local dev (npm run dev), you still need to run the Python server
-        // or configure Vite proxy. But on Vercel, this works automatically.
-        const apiUrl = import.meta.env.VITE_API_URL || '/api/measure';
+        // Use environment variable or fallback to the known backend URL on Vercel
+        const apiUrl = import.meta.env.VITE_API_URL || 'https://solmatch-backend.vercel.app/api/measure';
 
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -19,45 +17,23 @@ export const mockAnalyzeFootMeasurement = async (imageBase64) => {
         });
 
         if (!response.ok) {
-            throw new Error('Backend not available. Falling back to Demo mode.');
+            throw new Error('Gagal terhubung ke Server AI. Pastikan internet Anda stabil.');
         }
 
         const result = await response.json();
 
-        // The Python backend is designed to return the same output structure we need
+        // The Python backend returns a success flag
         if (!result.success) {
-            throw new Error(result.error || 'CV logic failed');
+            // Throw the explicit error from Python OpenCV so the UI can display it
+            throw new Error(result.error || 'AI gagal mendeteksi kertas A4. Pastikan pencahayaan cukup dan kertas utuh.');
         }
 
         return result;
 
     } catch (err) {
-        console.warn('⚠️ Real AI server not reachable, using mock Enterprise simulation for Demo...', err);
-
-        // DEMO FALLBACK: Simulate network delay and intensive AI processing time
-        await new Promise(resolve => setTimeout(resolve, 2500));
-
-        // MOCK LOGIC: Randomly generate a realistic foot length between 23cm and 29cm
-        const rawLengthCm = (Math.random() * (29 - 23) + 23).toFixed(1);
-        const lengthCm = parseFloat(rawLengthCm);
-
-        // Conversion logic (Approximate standard sizing)
-        let euSize = Math.round((lengthCm + 1.5) * 1.5);
-        let usSize = Math.round((lengthCm / 2.54 * 3) - 22 + 1); // +1 offset for common sizing
-        usSize = Math.max(usSize, 6); // Set a minimum for the mock
-        let ukSize = usSize - 1;
-
-        return {
-            success: true,
-            data: {
-                footLength: lengthCm,
-                sizes: {
-                    eu: euSize,
-                    us: usSize,
-                    uk: ukSize
-                },
-                confidence: (Math.random() * (99 - 92) + 92).toFixed(1) // Fake AI confidence score
-            }
-        };
+        console.error('API Error:', err);
+        // Rethrow so the Measure component can catch and display the error message on screen
+        throw err;
     }
 };
+

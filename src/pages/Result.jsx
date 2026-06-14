@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Share2, ArrowRight, Save, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Share2, ArrowRight, Save, CheckCircle2, ChevronRight, Check } from 'lucide-react';
 import { calculateBrandSizes } from '../utils/brandSizing';
 
 export default function Result() {
     const location = useLocation();
     const navigate = useNavigate();
     const [gender, setGender] = useState('M');
+    const [isSaved, setIsSaved] = useState(false);
 
     // Get data passed from Measure page
     const measurementData = location.state?.measurement?.data;
@@ -19,6 +20,18 @@ export default function Result() {
 
     const { footLength, confidence } = measurementData;
     const sizesData = calculateBrandSizes(footLength, gender);
+
+    // Save to history logic
+    const handleSave = () => {
+        const historyItem = {
+            date: new Date().toISOString(),
+            footLength,
+            gender,
+            sizesData
+        };
+        localStorage.setItem('solematch_history', JSON.stringify(historyItem));
+        setIsSaved(true);
+    };
 
     return (
         <div className="flex flex-col min-h-full p-4 sm:p-8 max-w-2xl mx-auto w-full bg-slate-50">
@@ -132,9 +145,15 @@ export default function Result() {
                 transition={{ delay: 0.5 }}
                 className="space-y-3"
             >
-                <button className="w-full bg-brand-600 text-white font-semibold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-brand-700 active:scale-95 transition-all shadow-md shadow-brand-500/20">
-                    <Save className="w-5 h-5" />
-                    Save to Profile
+                <button 
+                    onClick={handleSave}
+                    disabled={isSaved}
+                    className={`w-full font-semibold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md ${
+                        isSaved ? 'bg-emerald-500 text-white shadow-emerald-500/20' : 'bg-brand-600 text-white hover:bg-brand-700 active:scale-95 shadow-brand-500/20'
+                    }`}
+                >
+                    {isSaved ? <Check className="w-5 h-5" /> : <Save className="w-5 h-5" />}
+                    {isSaved ? 'Saved to Device' : 'Save to Profile'}
                 </button>
                 <button className="w-full bg-white text-slate-700 font-semibold py-4 rounded-xl flex items-center justify-center gap-2 border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">
                     <Share2 className="w-5 h-5" />

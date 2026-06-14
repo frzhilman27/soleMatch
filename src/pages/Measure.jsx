@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Camera, ArrowLeft, RefreshCw, Smartphone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { mockAnalyzeFootMeasurement } from '../services/api';
+import { analyzeFootMeasurement } from '../services/api';
 
 export default function Measure() {
     const navigate = useNavigate();
@@ -61,19 +61,21 @@ export default function Measure() {
         setIsProcessing(true);
 
         try {
-            // Stop the stream to save battery/resources
+            // Send to API
+            const result = await analyzeFootMeasurement(imageData);
+            
+            // If success, stop camera and navigate
             if (stream) {
                 stream.getTracks().forEach(track => track.stop());
                 setStream(null);
             }
-            // Send to API
-            const result = await mockAnalyzeFootMeasurement(imageData);
             // Navigate to Result page with data
             navigate('/result', { state: { measurement: result } });
         } catch (err) {
-            setError("Failed to process image. Please try again.");
+            // Show explicit error from OpenCV
+            setError(err.message || "Failed to process image. Please try again.");
             setIsProcessing(false);
-            startCamera(); // restart camera internally if failed
+            // Don't restart camera automatically if we have an error alert showing, let user read it first.
         }
     };
 
