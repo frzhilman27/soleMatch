@@ -9,86 +9,111 @@ export default function Home() {
     return (
         <div className="flex flex-col min-h-full">
             {/* Hero Section */}
-            <section className="px-4 pt-12 pb-16 flex flex-col items-center text-center bg-gradient-to-b from-brand-50 to-slate-50">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-600 text-xs font-semibold mb-6 uppercase tracking-wider"
-                >
-                    <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-                    B2B Ready Technology
-                </motion.div>
+            <section className="px-4 pt-12 pb-16 flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl mx-auto w-full bg-gradient-to-b from-brand-50 to-slate-50 rounded-b-3xl">
+                <div className="flex-1 text-center md:text-left flex flex-col items-center md:items-start">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold mb-6 uppercase tracking-wider border border-brand-200"
+                    >
+                        <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                        Enterprise API Available
+                    </motion.div>
 
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4 max-w-full px-2"
-                >
-                    Find Your Perfect <br className="sm:hidden" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-blue-700">Shoe Size</span>
-                </motion.h1>
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4"
+                    >
+                        Precision Sizing for <br className="hidden sm:block" />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-blue-700">Every Brand</span>
+                    </motion.h1>
 
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-slate-600 text-lg sm:text-xl max-w-lg mb-8"
-                >
-                    Use your phone's camera to measure your foot with clinical precision. Zero returns, endless comfort.
-                </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="text-slate-600 text-lg sm:text-xl max-w-lg mb-8 leading-relaxed"
+                    >
+                        Reduce footwear return rates by 40%. Integrate SoleMatch's clinical AI measurement technology directly into your e-commerce experience.
+                    </motion.p>
 
-                <motion.button
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    onClick={() => navigate('/measure')}
-                    className="w-full max-w-[320px] flex items-center justify-center gap-2 bg-brand-600 text-white font-semibold text-lg py-4 px-6 rounded-2xl shadow-lg shadow-brand-500/30 hover:bg-brand-700 active:scale-95 transition-all mx-auto"
-                >
-                    <Camera className="w-6 h-6" />
-                    Start Measurement
-                </motion.button>
+                    <motion.button
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        onClick={() => navigate('/measure')}
+                        className="w-full sm:w-auto flex items-center justify-center gap-3 bg-brand-600 text-white font-semibold text-lg py-4 px-8 rounded-2xl shadow-[0_10px_20px_-10px_rgba(37,99,235,0.6)] hover:bg-brand-700 hover:-translate-y-1 active:scale-95 transition-all"
+                    >
+                        <Camera className="w-6 h-6" />
+                        Try Live Demo
+                    </motion.button>
 
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.6 }}
-                    className="mt-6 text-sm text-slate-500 flex items-center gap-2"
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.6 }}
+                        className="mt-6 text-sm text-slate-500 flex items-center gap-2"
+                    >
+                        <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                        Trusted by 50+ Global Retailers
+                    </motion.div>
+                </div>
+                
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    transition={{ duration: 0.7, delay: 0.3 }}
+                    className="flex-1 w-full max-w-md relative"
                 >
-                    <ShieldCheck className="w-4 h-4 text-emerald-500" />
-                    Enterprise-grade AI accuracy
+                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-400/20 to-transparent blur-3xl rounded-full"></div>
+                    <img 
+                        src="/assets/images/hero.png" 
+                        alt="AI Foot Measurement UI" 
+                        className="w-full h-auto object-cover rounded-3xl shadow-2xl relative z-10 border border-white/50"
+                    />
                 </motion.div>
             </section>
 
             {/* How it Works Section */}
-            <section className="px-4 py-16 bg-white border-t border-slate-100 flex-1">
-                <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">How It Works</h2>
-                <div className="max-w-4xl mx-auto grid sm:grid-cols-3 gap-8">
+            <section className="px-4 py-20 bg-white border-t border-slate-100 flex-1">
+                <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Seamless Integration Process</h2>
+                <div className="max-w-6xl mx-auto grid sm:grid-cols-3 gap-10 px-4">
 
-                    <div className="flex flex-col items-center text-center">
-                        <div className="w-16 h-16 bg-sky-50 rounded-2xl flex items-center justify-center mb-4 text-brand-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+                        className="flex flex-col items-center text-center group"
+                    >
+                        <div className="w-48 h-48 mb-6 rounded-3xl overflow-hidden shadow-lg border-2 border-transparent group-hover:border-brand-200 transition-all">
+                            <img src="/assets/images/step1.png" alt="A4 Paper Setup" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         </div>
-                        <h3 className="font-semibold text-lg text-slate-900 mb-2">1. Grab an A4 Paper</h3>
-                        <p className="text-slate-500 text-sm">Place a standard A4 paper on the floor against a wall. This acts as our reference scale.</p>
-                    </div>
+                        <h3 className="font-bold text-xl text-slate-900 mb-3">1. Standardized Reference</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed">Customers use a standard A4 paper as a universal calibration anchor. No special equipment required.</p>
+                    </motion.div>
 
-                    <div className="flex flex-col items-center text-center">
-                        <div className="w-16 h-16 bg-sky-50 rounded-2xl flex items-center justify-center mb-4 text-brand-500">
-                            <Ruler className="w-8 h-8" />
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}
+                        className="flex flex-col items-center text-center group"
+                    >
+                        <div className="w-48 h-48 mb-6 rounded-3xl overflow-hidden shadow-lg border-2 border-transparent group-hover:border-brand-200 transition-all">
+                            <img src="/assets/images/step2.png" alt="Snap Photo" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         </div>
-                        <h3 className="font-semibold text-lg text-slate-900 mb-2">2. Stand & Snap</h3>
-                        <p className="text-slate-500 text-sm">Place your foot on the paper, heel touching the wall, and take a photo straight down.</p>
-                    </div>
+                        <h3 className="font-bold text-xl text-slate-900 mb-3">2. Single Capture</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed">Our SDK guides the user to take a perfectly aligned top-down photo using augmented reality guides.</p>
+                    </motion.div>
 
-                    <div className="flex flex-col items-center text-center">
-                        <div className="w-16 h-16 bg-sky-50 rounded-2xl flex items-center justify-center mb-4 text-brand-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }}
+                        className="flex flex-col items-center text-center group"
+                    >
+                        <div className="w-48 h-48 mb-6 rounded-3xl overflow-hidden shadow-lg border-2 border-transparent group-hover:border-brand-200 transition-all">
+                            <img src="/assets/images/step3.png" alt="AI Analysis" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         </div>
-                        <h3 className="font-semibold text-lg text-slate-900 mb-2">3. Get Your Size</h3>
-                        <p className="text-slate-500 text-sm">Our AI engine instantly calculates your exact foot length and gives you universal sizes.</p>
-                    </div>
+                        <h3 className="font-bold text-xl text-slate-900 mb-3">3. Instant Brand Match</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed">Proprietary computer vision algorithms instantly map the 3D foot volume to brand-specific size charts.</p>
+                    </motion.div>
 
                 </div>
             </section>
