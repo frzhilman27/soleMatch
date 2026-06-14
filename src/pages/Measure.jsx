@@ -80,7 +80,7 @@ export default function Measure() {
     };
 
     return (
-        <div className="flex flex-col h-full bg-black relative overflow-hidden">
+        <div className="flex flex-col h-[100dvh] bg-black relative overflow-hidden w-full">
             {/* Top Bar overlay */}
             <div className="absolute top-0 w-full z-20 flex justify-between items-center p-4 bg-gradient-to-b from-black/60 to-transparent">
                 <button onClick={() => navigate('/')} className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white">
@@ -154,7 +154,7 @@ export default function Measure() {
             <canvas ref={canvasRef} className="hidden" />
 
             {/* Bottom Controls */}
-            <div className="h-32 bg-black pb-safe flex items-center justify-center z-20">
+            <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-black via-black/80 to-transparent flex items-center justify-center z-20 pb-safe">
                 <button
                     onClick={handleCapture}
                     disabled={!!error || isProcessing || !stream}

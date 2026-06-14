@@ -66,7 +66,7 @@ export default function Home() {
                     initial={{ opacity: 0, scale: 0.9, x: 20 }}
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     transition={{ duration: 0.7, delay: 0.3 }}
-                    className="flex-1 w-full max-w-md relative"
+                    className="flex-1 w-full max-w-md relative mt-4 md:mt-0 px-4 sm:px-0"
                 >
                     <div className="absolute inset-0 bg-gradient-to-tr from-brand-400/20 to-transparent blur-3xl rounded-full"></div>
                     <img 
