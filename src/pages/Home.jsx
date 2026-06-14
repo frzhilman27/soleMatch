@@ -11,15 +11,7 @@ export default function Home() {
             {/* Hero Section */}
             <section className="px-4 pt-12 pb-16 flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl mx-auto w-full bg-gradient-to-b from-brand-50 to-slate-50 rounded-b-3xl">
                 <div className="flex-1 text-center md:text-left flex flex-col items-center md:items-start">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold mb-6 uppercase tracking-wider border border-brand-200"
-                    >
-                        <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-                        Enterprise API Available
-                    </motion.div>
+
 
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
